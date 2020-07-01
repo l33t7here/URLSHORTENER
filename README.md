@@ -1,4 +1,5 @@
 # URLSHORTENER
 Simple Better Faster
 
-#This Repo is For Beginners Due To Easier Codes, i will be updating it everyday to make more better
+# This Repo is For Beginners Due To Easier Codes, i will be updating it everyday to make more better
+Demo = http://l33there.pythonanywhere.com/
