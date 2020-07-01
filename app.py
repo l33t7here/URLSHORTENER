@@ -26,4 +26,4 @@ def random():
 
 
 
-app.run(debug = True)
+app.run()
