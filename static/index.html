@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CutIt-Url Shortner</title>
+    <link rel="shortcut icon" href="./static/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./static/font-awesome.min.css">
+    <link href="./static/google" rel="stylesheet">
+    <!-- Bulma Version 0.8.2-->
+    <link rel="stylesheet" href="./static/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="./static/landing.css">
+</head>
+
+<body>
+    <section class="hero is-info is-fullheight">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <span class="navbar-burger burger" data-target="navbarMenu">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenu" class="navbar-menu">
+                        <div class="navbar-end">
+                          
+                            <span class="navbar-item">
+                                
+                                    </span>
+                                    <span></span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                
+                                    <span></span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" href="https://github.com/l33t7here">
+                                    <span class="icon">
+                                        <i class="fa fa-github"></i>
+                                    </span>
+                                    <span>My Git :)</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            </div>
+
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h1 class="title">
+                            URL SHORTENER
+                        </h1>
+                        <h2 class="subtitle">
+                            Simple Better Faster
+                        </h2>
+                        <div class="box">
+                            <div class="field is-grouped">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Enter Your Link">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-info" onclick="gopal()">
+                                        <b>CuT-IT</b>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <script async type="text/javascript" src="./static/bulma.js"></script>
+    <script type="text/javascript"> function gopal(){
+    	if(document.getElementsByClassName('input')[0].value == ''){
+            document.getElementsByClassName('input')[0].placeholder="Don't Leave Me Blank :(";
+        }
+        else if(isUrlValid(document.getElementsByClassName('input')[0].value)){
+    	var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.open( "POST", "/short/", false );
+        var r,data;
+        var r,data = isUrlValid(document.getElementsByClassName('input')[0].value);
+    	xmlHttp.send(data);
+    	var response = xmlHttp.responseText
+    	document.getElementsByClassName('input')[0].value=response;
+        var mytext = document.getElementsByClassName('input')[0].value;
+        var fullLink = document.createElement('input');
+        document.body.appendChild(fullLink);
+        fullLink.value = mytext;
+        fullLink.select();
+        document.execCommand("copy", false);
+        fullLink.remove();
+        document.getElementsByClassName("button is-info")[0].text = "Link Copied"
+
+    }
+    	else{
+    		document.getElementsByClassName('input')[0].value='';
+    		document.getElementsByClassName('input')[0].placeholder="Incorrect Url Please Correct it !";
+    	}
+    }
+    
+function isUrlValid(userInput) {
+    for (i = 0; i < userInput.length; i++) {
+        if(userInput[0] == '/'){
+            userInput = userInput.substring(1)
+    }
+        else if(userInput[0] != '/'){
+            break;
+        }
+    }
+    var patt = /(http|https)/i;
+    if(userInput.match(patt) == null){
+        userInput = 'http://' + userInput;
+        
+    }
+    var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    if(res == null)
+        return false;
+    else
+        return true,userInput;
+}
+
+
+    </script>
+
+</body>
+
+</html>
